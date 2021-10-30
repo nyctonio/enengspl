@@ -61,8 +61,8 @@
                                         <select
                                             class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                                             <!-- <option>Type of Car</option> -->
-                                            <option>Scooter</option>
-                                            <option>Motorcycle</option>
+                                            <option value="Scooter">Scooter</option>
+                                            <option value="Motorcycle"> Motorcycle</option>
                                         </select>
                                     </div>
                                     <svg class="w-2 h-2 absolute top-15 right-0 m-4 pointer-events-none"
@@ -75,9 +75,9 @@
                                         <p class="col-span-1">Engine Capacity</p>
                                         <select
                                             class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                            <option>Less than 150cc</option>
-                                            <option>More than 200cc</option>
-                                            <option>Less than 200cc</option>
+                                            <option value="Less than 150cc">Less than 150cc</option>
+                                            <option value="More than 200cc">More than 200cc</option>
+                                            <option value="Less than 200cc">Less than 200cc</option>
                                         </select>
                                     </div>
                                     <svg class="w-2 h-2 absolute top-30 right-0 m-4 pointer-events-none"
@@ -90,7 +90,7 @@
                                         <p class="col-span-1">Fuel</p>
                                         <select
                                             class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                            <option>Petrol</option>
+                                            <option value="Petrol">Petrol</option>
                                         </select>
                                     </div>
 
@@ -140,9 +140,9 @@
                                         <select
                                             class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                                             <!-- <option>Type of Car</option> -->
-                                            <option>Hatchback</option>
-                                            <option>Sedan</option>
-                                            <option>SUV</option>
+                                            <option value="Hatchback">Hatchback</option>
+                                            <option value="Sedan"> Sedan</option>
+                                            <option value="SUV">SUV</option>
                                         </select>
                                     </div>
                                     <svg class="w-2 h-2 absolute top-15 right-0 m-4 pointer-events-none"
@@ -155,11 +155,11 @@
                                         <p class="col-span-1">Engine Capacity</p>
                                         <select
                                             class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                            <option>Less than 1000cc</option>
-                                            <option>More than 1000cc</option>
-                                            <option>Less than 2000cc</option>
-                                            <option>More than 2000cc</option>
-                                            <option>Premium</option>
+                                            <option value="Less than 1000cc">Less than 1000cc</option>
+                                            <option value="More than 1000cc">More than 1000cc</option>
+                                            <option value="Less than 2000cc">Less than 2000cc</option>
+                                            <option value="More than 2000cc">More than 2000cc</option>
+                                            <option value="Premium">Premium</option>
                                         </select>
                                     </div>
                                     <svg class="w-2 h-2 absolute top-30 right-0 m-4 pointer-events-none"
@@ -172,8 +172,8 @@
                                         <p class="col-span-1">Fuel</p>
                                         <select
                                             class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                            <option>Diesel</option>
-                                            <option>Petrol</option>
+                                            <option value="Diesel">Diesel</option>
+                                            <option value="Petrol">Petrol</option>
                                         </select>
                                     </div>
 
@@ -334,6 +334,73 @@
         const check = await res.json();
         return check;
     }
+
+
+
+
+
+
+
+    function c02_cal(carbon_det){
+  let data={
+    "Scooter":{
+      "less than 150cc":{
+        "petrol":0.0378
+      }
+    },
+    "Motorcycle":{
+      "less than 200cc":{
+        "petrol":0.0373
+      },
+      "more than 200cc":{
+        "petrol":0.0596
+      }
+    },
+    "Hatchback":{
+      "less than 1000cc":{
+          "petrol":0.119,
+          "cng":0.068,
+          "diesel":0.113
+      },
+      "more than 1000cc":{
+          "petrol":0.151,
+          "cng":0.086,
+          "diesel":0.137       
+      }
+    },
+    "Sedan":{
+      "less than 2000cc":{
+          "petrol":0.153,
+          "diesel":0.136
+      },
+      "more than 2000cc":{
+          "petrol":0.169,
+          "diesel":0.160
+      },
+      "premium":{
+          "petrol":0.229,
+          "diesel":0.196
+      }
+    },
+    "Suv":{
+      "less than 2000cc":{
+          "petrol":0.203,
+          "diesel":0.201
+      },
+      "more than 2000cc":{
+          "petrol":0.222,
+          "diesel":0.215
+      },
+      "premium":{
+          "petrol":0.259,
+          "diesel":0.231
+      }
+    }
+  }
+
+  return data[carbon_set.classification][carbon_det.category][carbon_det.fuel];
+}
+
 </script>
 
 
